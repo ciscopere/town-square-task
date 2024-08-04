@@ -4,15 +4,17 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "ts-node src/server.ts"
+    "dev": "ts-node src/server.ts",
+    "typeorm": "ts-node node_modules/typeorm/cli.js -d src/data-source.ts"
   },
   "dependencies": {
+    "@graphql-tools/merge": "^9.0.4",
     "apollo-server-express": "^2.19.2",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
     "pg": "^8.6.0",
-    "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.34"
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
