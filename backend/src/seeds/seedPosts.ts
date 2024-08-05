@@ -7,7 +7,7 @@ const seedPosts = async () => {
     const postRepository = AppDataSource.getRepository(Post);
     let order = LexoRank.middle();
     // Generate fake posts
-    const fakePosts = Array.from({ length: 10 }).map(() => {
+    const fakePosts = Array.from({ length: 300 }).map(() => {
         order = order.genNext();
 
         return {
