@@ -16,6 +16,7 @@
   user-select: none;
   background: white;
   transition: background-color 0.2s ease;
+  border-bottom: 1px solid rgb(235,235,235);
 }
 
 .draggable-item.dragging {
