@@ -10,7 +10,7 @@ const startServer = async () => {
 
     // Configure CORS
     app.use(cors({
-        origin: 'http://localhost:5173',
+        origin: process.env.GRAPHQL_URL,
         methods: ['GET', 'POST'],
         credentials: true,
     }));
@@ -24,8 +24,10 @@ const startServer = async () => {
     await server.start();
     server.applyMiddleware({ app });
 
-    app.listen({ port: 4000 }, () =>
-        console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+    const port = process.env.PORT || 4000;
+
+    app.listen({ port: port }, () =>
+        console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`)
     );
 };
 
