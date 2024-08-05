@@ -1,5 +1,5 @@
 {
-  "name": "town-square-server",
+  "name": "town-square-backend",
   "private": true,
   "version": "1.0.0",
   "scripts": {

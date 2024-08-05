@@ -1,7 +1,6 @@
 import {AppDataSource} from "../data-source";
 import {Post} from "../entities/Post";
 import {LexoRank} from "lexorank"
-import LexoRankBucket from "lexorank/lib/lexoRank/lexoRankBucket";
 
 export const postResolver = {
     Query: {
