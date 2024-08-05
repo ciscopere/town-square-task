@@ -1,14 +1,20 @@
 import { AppDataSource } from '../data-source';
 import { Post } from '../entities/Post';
 import { faker } from '@faker-js/faker';
+import {LexoRank} from "lexorank";
 
 const seedPosts = async () => {
     const postRepository = AppDataSource.getRepository(Post);
+    let order = LexoRank.middle();
     // Generate fake posts
-    const fakePosts = Array.from({ length: 10 }).map(() => ({
-        title: faker.lorem.sentence(),
-        order: faker.number.int().toString(),
-    }));
+    const fakePosts = Array.from({ length: 10 }).map(() => {
+        order = order.genNext();
+
+        return {
+            title: faker.lorem.sentence(),
+            order: order.toString(),
+        };
+    });
 
     // Insert posts into the database
     await postRepository.save(fakePosts);

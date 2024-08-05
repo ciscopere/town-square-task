@@ -12,6 +12,6 @@ export const postSchema = gql`
   }
 
   type Mutation {
-    addPost(title: String!, order: String!): Post
+    reorderPost(id: ID!, prevId: ID, nextId: ID): Post
   }
 `;

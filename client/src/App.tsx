@@ -1,17 +1,16 @@
-import logo from './assets/logo.svg'
 import './App.css'
+import Posts from "./components/Post.tsx";
+import {Box, Container, Typography} from "@mui/material";
 
-function App() {
-  return (
-    <>
-      <div>
-        <a href="https://townsquare.au" target="_blank">
-          <img src={logo} className="logo" alt="Town Square logo" />
-        </a>
-      </div>
-      <h1>Town square test</h1>
-    </>
-  )
-}
+const App = () => (
+    <Container>
+        <Box my={4}>
+            <Typography variant="h2" component="h1" gutterBottom>
+                Town square test
+            </Typography>
+            <Posts />
+        </Box>
+    </Container>
+);
 
 export default App

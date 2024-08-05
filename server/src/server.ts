@@ -3,9 +3,18 @@ import { ApolloServer } from "apollo-server-express";
 import { typeDefs } from './schemas';
 import { resolvers } from './resolvers';
 import {context} from "./context";
+import cors from 'cors';
 
 const startServer = async () => {
     const app = express();
+
+    // Configure CORS
+    app.use(cors({
+        origin: 'http://localhost:5173',
+        methods: ['GET', 'POST'],
+        credentials: true,
+    }));
+
     const server = new ApolloServer({
         typeDefs,
         resolvers,
