@@ -7,4 +7,7 @@ export const resolvers = {
     Mutation: {
         ...postResolver.Mutation,
     },
+    Subscription: {
+        ...postResolver.Subscription,
+    }
 };

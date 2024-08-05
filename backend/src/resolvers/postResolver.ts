@@ -1,13 +1,22 @@
 import {AppDataSource} from "../data-source";
 import {Post} from "../entities/Post";
-import {LexoRank} from "lexorank"
+import {LexoRank} from "lexorank";
+import { PubSub } from 'graphql-subscriptions';
+
+const pubsub = new PubSub();
+const POST_REORDERED = 'POST_REORDERED';
 
 export const postResolver = {
     Query: {
-        posts: async () => {
+        posts: async (_: any, { offset = 0, limit = 20 }) => {
             try {
+                console.log(`Getting posts from ${offset} to ${limit}`)
                 const postRepository = AppDataSource.getRepository(Post);
-                return await postRepository.find({ order: { order: "ASC" } });
+                return await postRepository.find({
+                    skip: offset,
+                    take: limit,
+                    order: { order: "ASC" },
+                });
             } catch (error) {
                 console.error('Error fetching posts:', error);
                 throw new Error('Failed to fetch posts');
@@ -15,7 +24,7 @@ export const postResolver = {
         },
     },
     Mutation: {
-        reorderPost: async (_: any, { id, prevId, nextId }: { id: number; prevId?: number; nextId?: number }) => {
+        reorderPost: async (_: any, { id, prevId, nextId, index }: { id: number; prevId?: number; nextId?: number; index?: number }) => {
             const postRepository = AppDataSource.getRepository(Post);
 
             // Find the prev and next posts
@@ -33,16 +42,28 @@ export const postResolver = {
             } else {
                 newOrder = LexoRank.middle().toString();
             }
-console.log(newOrder);
+
             // Update the post with new order
             const post = await postRepository.findOneBy({ id });
             if (post) {
                 post.order = newOrder;
                 await postRepository.save(post);
+                console.log(`Post order updated. ID: ${post.id}`);
+
+                pubsub.publish(POST_REORDERED, { postReordered: {
+                    id: post.id,
+                    index: index
+                }});
+
                 return post;
             }
 
             throw new Error("Post not found");
+        },
+    },
+    Subscription: {
+        postReordered: {
+            subscribe: () => pubsub.asyncIterator([POST_REORDERED])
         },
     },
 };

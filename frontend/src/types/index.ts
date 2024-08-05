@@ -12,4 +12,5 @@ export interface ReorderPostVariables {
     id: number;
     prevId: number | null;
     nextId: number | null;
+    index: number | null;
 }

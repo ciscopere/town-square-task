@@ -6,12 +6,21 @@ export const postSchema = gql`
     title: String!
     order: String!
   }
+  
+  type PostReordered {
+    id: ID!
+    index: Int
+  }
 
   type Query {
-    posts: [Post]
+    posts(offset: Int, limit: Int): [Post]
   }
 
   type Mutation {
-    reorderPost(id: ID!, prevId: ID, nextId: ID): Post
+    reorderPost(id: ID!, prevId: ID, nextId: ID, index: Int): Post
+  }
+  
+  type Subscription {
+    postReordered: PostReordered
   }
 `;

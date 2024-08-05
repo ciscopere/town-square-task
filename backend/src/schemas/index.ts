@@ -5,6 +5,7 @@ import { postSchema } from './postSchema';
 const baseSchema = gql`
   type Query
   type Mutation
+  type Subscription
 `;
 
 
