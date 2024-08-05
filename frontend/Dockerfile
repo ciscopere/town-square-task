@@ -15,4 +15,4 @@ FROM base AS production
 COPY . ./
 RUN yarn build
 EXPOSE 80
-CMD ["yarn", "dev"]
+CMD ["yarn", "start"]

@@ -24,7 +24,6 @@ services:
       - "4000:4000"
     environment:
       DATABASE_URL: postgres://user:password@db:5432/mydatabase
-      GRAPHQL_PORT: "4000"
       CORS_ORIGIN: http://localhost:5173
     volumes:
       - ./backend:/app
