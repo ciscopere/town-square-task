@@ -1,5 +1,5 @@
 services:
-  frontend:
+  client:
     build:
       context: ./client
       dockerfile: Dockerfile
@@ -7,11 +7,10 @@ services:
       - "5173:5173"
     volumes:
       - ./client:/app
-      - /app/node_modules
-#    depends_on:
-#      - graphql
+    depends_on:
+      - server
 
-  graphql:
+  server:
     build:
       context: ./server
       dockerfile: Dockerfile
