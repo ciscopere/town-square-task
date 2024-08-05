@@ -5,18 +5,13 @@
 docker compose up --build -d
 ```
 
-## Install library
-```
-docker compose exec -ti server yarn add typeorm
-```
-
 ## Create migration 
 ```
-    docker compose exec -ti server yarn typeorm migration:generate -n InitialMigration
+    docker compose exec -ti backend yarn typeorm migration:generate -n MigrationName
 ```
 
 ## Create mock data
 ```
-    docker compose exec -ti graphql yarn seed
+    docker compose exec -ti backend yarn seed
 ```
 

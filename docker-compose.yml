@@ -1,25 +1,25 @@
 services:
-  client:
+  frontend:
     build:
-      context: ./client
+      context: frontend
       dockerfile: Dockerfile
     ports:
       - "5173:5173"
     volumes:
-      - ./client:/app
+      - ./frontend:/app
     depends_on:
-      - server
+      - backend
 
-  server:
+  backend:
     build:
-      context: ./server
+      context: backend
       dockerfile: Dockerfile
     ports:
       - "4000:4000"
     environment:
       DATABASE_URL: postgres://user:password@db:5432/mydatabase
     volumes:
-      - ./server:/app
+      - ./frontend:/app
     depends_on:
       - db
 
