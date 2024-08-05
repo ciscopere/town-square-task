@@ -8,7 +8,7 @@ To access the version of the product that is up you can go [here](https://town-s
 
 Below you will find also instructions to mount the projects in Heroku. 
 My idea was to use the same docker config for the deployment but this was not a good approach.
-It took me lots of time to fix some issues with that and some things (Web sockets, not production version deployed) are not working properly in that env.
+It took me some time to fix some issues with that and things like Web sockets and are not working properly in that env.
 Using Heroku buildpacks would be much easier.
 
 For reordering the posts I used **LexoRank**. 
