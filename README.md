@@ -11,7 +11,7 @@ My idea was to use the same docker config for the deployment but this was not a 
 It took me some time to fix some issues with that and things like Web sockets and are not working properly in that env.
 Using Heroku buildpacks would be much easier.
 
-For reordering the posts I used **LexoRank**. 
+For reordering the posts I used **LexoRank**. With a bit more time I would add unit tests for those methods.
 
 ## Local Environment
 
