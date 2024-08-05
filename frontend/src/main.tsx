@@ -6,7 +6,7 @@ import './index.css';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql', // Replace with your GraphQL endpoint
+    uri: import.meta.env.VITE_GRAPHQL_URL, // Replace with your GraphQL endpoint
     cache: new InMemoryCache(),
 });
 
